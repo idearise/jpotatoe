@@ -53,6 +53,7 @@ that the target database is updated every so often.
 source = "http://192.168.0.4:5984/" # with trailing slash
 target = "http://192.168.0.2:5984/" # with trailing slash
 databases = { "mytestdb" => 0 } # { "name_in_quotes" => default_update_count }
+
 config = { :replicate_url => replicate_url,
            :source => source,
            :target => target,

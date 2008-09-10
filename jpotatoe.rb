@@ -145,21 +145,25 @@ protected
 
 end
 
-# Example
+# Example Usage
+#
+# Batch size is the number of database updates that the script will wait for before 
+# starting the replication process. A database update doesn't always mean that a 
+# document was updated!
+#
+# The script will also start the replication process every X seconds to make sure 
+# that the target database is updated every so often.
+
 replicate_url = "http://192.168.0.4:5984/_replicate"
 source = "http://192.168.0.4:5984/" # with trailing slash
 target = "http://192.168.0.2:5984/" # with trailing slash
 databases = { "mytestdb" => 0 } # { "name_in_quotes" => default_update_count }
+
 config = { :replicate_url => replicate_url,
            :source => source,
            :target => target,
            :databases => databases,
            :batch_size => 50, 
            :x_seconds => 1800 }
-# Batch size is the number of database updates to wait for before initializing
-# the replication process.  A database updates may not necessarily mean a 
-# document has been updated.  The script will also start the replication process
-# every X seconds to make sure that the target database is updated every so 
-# often.
-
+           
 Jpotatoe.new(config).watch
