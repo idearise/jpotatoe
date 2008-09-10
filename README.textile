@@ -5,7 +5,7 @@ demonstrated basic CouchDB replication through the DbUpdateNotificationProcess
 hook (couchdb.ini) setting.  The original potatoe.rb script is found in this 
 blog post:
 
-http://blog.idearise.com/2008/09/08/couchdb-081/
+"http://blog.idearise.com/2008/09/08/couchdb-081/":http://blog.idearise.com/2008/09/08/couchdb-081/
 
 The original potatoe.rb script did not do batch updates or timed updates. The 
 Jpotatoe script does both and is meant to be used with JRuby.
