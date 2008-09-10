@@ -11,31 +11,30 @@ The original potatoe.rb script did not do batch updates or timed updates. The
 Jpotatoe script does both and is meant to be used with JRuby.
 
 However, I don't think this script is a good way for real heavy CouchDB 
-replication.  It has not been tested with major loads, and there is no notion of
+replication.  It hasn't been tested with major loads, and there is no notion of
 how it may behave.  Furthermore, it just doesn't seem right to do major 
 replication this way instead of doing it through a built-in CouchDB service or a 
 message queue.
 
-So, why is this here?  Hopefully, it will help anyone thinking about doing 
-replication in this way to see what might be wrong with such an approach.  
+So, why is this here?  Hopefully, it will help anyone, who is thinking about doing 
+replication this way, to see what might be wrong with such an approach.  
 In any case, it might just be a waste of time.  ;-)
 
 h2. Caveats and TODO
 
 * It is not known how JRuby startup times may affect any CouchDB update messages
- already being sent before the script process is ready to accept those
+ that are already being sent before the script process is ready to accept those
  messages.
 * CouchDB fires another "database update" message after a successful 
-replication.  This means that the script may call for a subsequent replication 
-during its periodic time check even if there have been no other database updates.
-* A CouchDB "database update" message does not necessarily mean a document has 
-been updated...See the previous point about CouchDB sending a database update 
+replication.  This means that during its periodic time check the script may call 
+for a subsequent replication even if there are no other database updates.
+* A CouchDB "database update" message doesn't always mean a document was 
+updated...See the previous point about CouchDB sending a database update 
 message after a successful replication.
 * The script spawns a thread for each replication HTTP POST.
-* The thread locks are not on a real "transaction" that encompasses the 
+* The thread locks are not on a "transaction" that includes the 
 replication; they are on the minimum shared resource.  This means that 
 additional database updates may occur before replication has begun and will be 
-part of that replication.
-* The script doesn't handle specific batch sizes or times for different 
-databases.
+end up as part of that replication.
+* The script doesn't handle batch sizes or times for different databases.
 * CouchDB replication may be completely different in the future!
