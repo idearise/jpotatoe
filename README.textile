@@ -41,10 +41,12 @@ end up as part of that replication.
 
 h2. Example Usage
 
-Batch size is the number of database updates to wait for before initializing the
-replication process. A database updates may not necessarily mean a document has 
-been updated. The script will also start the replication process every X seconds
-to make sure that the target database is updated every so often.
+Batch size is the number of database updates the script will wait for before 
+initializing the replication process. A database update does not always mean 
+that a document has been updated. 
+
+The script will also start the replication process every X seconds to make sure 
+that the target database is updated every so often.
 
 <pre>
 <code>replicate_url = "http://192.168.0.4:5984/_replicate"
