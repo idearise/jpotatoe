@@ -26,8 +26,7 @@ class Jpotatoe
   end
 
   def initialize(config={})
-    #@logger = Logger.new('/usr/local/var/log/couchdb/jpotatoe.log', 3, 1024000)
-    @logger = Logger.new('/home/share/jpotatoe.log', 3, 1024000)
+    @logger = Logger.new('/usr/local/var/log/couchdb/jpotatoe.log', 3, 1024000)
     @logger.level = Logger::INFO
     @logger.info "Initializing..."
     
