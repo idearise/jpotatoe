@@ -1,6 +1,20 @@
 #!/usr/bin/env jruby
 # ^ Place the full path to the jruby binary if needed
 
+#   Copyright 2008 Idearise LLC
+#
+#   Licensed under the Apache License, Version 2.0 (the "License");
+#   you may not use this file except in compliance with the License.
+#   You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+#   Unless required by applicable law or agreed to in writing, software
+#   distributed under the License is distributed on an "AS IS" BASIS,
+#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#   See the License for the specific language governing permissions and
+#   limitations under the License.
+
 require 'rubygems'
 require 'logger'
 require 'json/pure' # sudo jruby -S gem install json_pure
@@ -140,7 +154,12 @@ config = { :replicate_url => replicate_url,
            :source => source,
            :target => target,
            :databases => databases,
-           :batch_size => 5, 
-           :x_seconds => 30 }
+           :batch_size => 50, 
+           :x_seconds => 1800 }
+# Batch size is the number of database updates to wait for before initializing
+# the replication process.  A database updates may not necessarily mean a 
+# document has been updated.  The script will also start the replication process
+# every X seconds to make sure that the target database is updated every so 
+# often.
 
 Jpotatoe.new(config).watch
